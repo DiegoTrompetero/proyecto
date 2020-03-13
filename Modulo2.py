@@ -394,7 +394,7 @@ def relleno_de_matriz (matriz):
 
 usuario = 0
 while usuario == 0:
-    Daotosdeljugador = {1}
+    Datosdeljugador = {}
     juego = 0
     while juego == 0:
         matriz_usuario = [
@@ -495,16 +495,20 @@ while usuario == 0:
             elif diccionario_cordd[fila][columna] == 1:
                 disparos +=1 
                 diccionario_cordd[fila][columna] = 0
-                matriz_usuario[fila].insert((columnas.index(columna))+ 1, "X")
-                impresion(matriz_usuario)
+               
 
                 if matriz_pc[fila][columnas.index(columna)+ 1] !=0:
                     puntacion += 10
+                    print("Bien")
+                    matriz_usuario[fila].insert((columnas.index(columna))+ 1, "F")
+                    impresion(matriz_usuario)
                     
 
                 elif matriz_pc[fila][columnas.index(columna)+ 1] ==0:
                     puntacion += -2
                     print("Fallaste")
+                    matriz_usuario[fila].insert((columnas.index(columna))+ 1, "X")
+                    impresion(matriz_usuario)
 
                 
 
@@ -515,8 +519,11 @@ while usuario == 0:
                             break
                         else:
                             Final = True
-
+            
+        print("Usuario: {}".format(Datosdeljugador[Username]))
         print ("Puntos obtuvidos: {} ptos ".format(puntacion))
+
+        #if puntacion > Datosdeljugador[P]
 
         continuar = pedirNumeroEnteroValidado("Ingrese 0 si quiere jugar de nuevo o 1 si quieres salir")
         while continuar !=0 and continuar !=1 :

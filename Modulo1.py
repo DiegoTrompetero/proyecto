@@ -16,7 +16,14 @@ class Usuario ():
             "Puntuacion maxima": Puntuacion_Max
         }
 
-
+def validarEntero(num):
+    isValid = False
+    try:
+        int(num)
+        isValid = True
+    except ValueError:
+        isValid = False
+    return isValid
 
 
 Base_de_Jugadores = {}
@@ -26,19 +33,19 @@ diccionario_top= {}
 print ("Bienvenido a Batalla naval")
 
 Username = str(input('''Ingrese su nombre de usuario:
-(debe ser menor a 30 carcateres y no debe contener espacios)
+(debe ser menor a 30 caracteres y no debe contener espacios)
 '''))
 
 if Username not in Base_de_Jugadores:
     pregunta = str(input("Primera vez que juegas: Si[s] NO [n]"))
     if pregunta.lower() == "n":
          Username = str(input('''Ingrese su nombre de usuario:
-            (debe ser menor a 30 carcateres y no debe contener espacios)
+            (debe ser menor a 30 caracteres y no debe contener espacios)
             '''))
     elif pregunta.lower() == "s":
         while len(Username) >= 30:
             Username = str(input('''Ingrese su nombre de usuario:
-            (debe ser menor a 30 carcateres y no debe contener espacios)
+            (debe ser menor a 30 caracteres y no debe contener espacios)
             '''))
 
         Verificacion = False
@@ -50,7 +57,7 @@ if Username not in Base_de_Jugadores:
 
             if Espacio:
                 Username = str(input('''Ingrese su nombre de usuario:
-                (debe ser menor a 30 carcateres y no debe contener espacios)
+                (debe ser menor a 30 caracteres y no debe contener espacios)
                 '''))
 
             elif Espacio == False:
@@ -58,6 +65,7 @@ if Username not in Base_de_Jugadores:
 
         Nombres = input ("Ingrese sus Nombres")
         Apellidos = input ("Ingrese sus apellidos")
+        Edad = validarEntero("Ingrese su edad")
         Nombre_completo = str(Nombres) + " " + str(Apellidos)
         Genero = str(input("Ingrese H para hombreo M para Mujer"))
         while Genero.lower( ) != "m" and Genero.lower() != "h":
@@ -70,13 +78,24 @@ if Username not in Base_de_Jugadores:
         
         Puntuacion_Max = 0
         print("Datos del nuevo usuario:")
-        print("Nombre de usuario:",)
+        print("Nombre de usuario:", Username)
         print("Nombre completo: ", Nombre_completo)
         print("Genero: ", Genero)
-        Base_de_jugadores: Usuario (Username,  )
+        print("Edad: ",Edad
+        Base_de_jugadores[Username] = Usuario(Username, Nombres,Apellidos, Edad, Genero,Puntuacion_Max)
 
 else:
-    deseo =
+    deseo = validarEntero("Ingrese 0 si quiere ingresar al juego o 1 si quiere cambiar tus datos de usuario")
+    while deseo != 0 and deseo !=1:
+        print("Ingrese lo deseado")
+        deseo = validarEntero("Ingrese 0 si quiere ingresar al juego o 1 si quiere cambiar tus datos de usuario")
+
+    if deseo ==1:
+
+        Base_de_jugadores[Username] = Usuario(Username, Nombres,Apellidos, Edad, Genero,Puntuacion_Max)
+
+    
+
 
 
 
