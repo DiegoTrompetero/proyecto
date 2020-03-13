@@ -1,25 +1,4 @@
 import random
-columnas = ("a","b","c","d","e","f","g","h","i","j")
-filas = (1,2,3,4,5,6,7,8,9,10)
-def impresion (matriz):
-    for z in matriz:
-        print (z[0],z[1],z[2],z[3],z[4],z[5],z[6],z[7],z[8],z[9],z[10])
-
-def pedirNumeroEnteroValidado(messages = "Ingrese un numero Enter0"):
-    num = input(messages)
-    while not validarEntero(num):
-        print("Error valor ingresado incompatible")
-        num = input(messages)
-    return int(num)
-
-def validarEntero(num):
-    isValid = False
-    try:
-        int(num)
-        isValid = True
-    except ValueError:
-        isValid = False
-    return isValid
 
 def relleno_de_matriz (matriz):
     columnas = ("a","b","c","d","e","f","g","h","i","j")
@@ -380,153 +359,42 @@ def relleno_de_matriz (matriz):
                             Cordenadaspc [filex+3][columnas[columnas.index(Golum)]] = 0
                             Cordenadaspc [filex+2][columnas[columnas.index(Golum)+1]] = 0
                             Cordenadaspc [filex+2][columnas[columnas.index(Golum)-1]] = 0
-                       
 
+columnas = ("a","b","c","d","e","f","g","h","i","j")
+def impresion (matriz):
+    for z in matriz:
+        print (z[0],z[1],z[2],z[3],z[4],z[5],z[6],z[7],z[8],z[9],z[10])
+matriz_pc= [
+    [" " ],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    [],
+    []
+    ]
 
+z= 1
+for y in range(1,11):
+   matriz_pc[y].append( z )
+   z += 1
 
+w=1
+for y in columnas:
+    matriz_pc[0].insert(w,y)
+    w +=1
 
+for y in range (1,11):
+    while len(matriz_pc[y]) <= 10:
+        matriz_pc[y].append(0)
 
+impresion(matriz_pc)
 
-#class Flota ():
-    #__init__(self,posiones)
-    #self.posiciones= posiciones
+relleno_de_matriz(matriz_pc)
 
-
-usuario = 0
-while usuario == 0:
-    Daotosdeljugador = {1}
-    juego = 0
-    while juego == 0:
-        matriz_usuario = [
-        [" " ],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        []
-        ]
-
-        z= 1
-        for y in range(1,11):
-            matriz_usuario[y].append( z )
-            z += 1
-
-        w=1
-        for y in columnas:
-            matriz_usuario[0].insert(w,y)
-            w +=1
-
-        for y in range (1,11):
-            while len(matriz_usuario[y]) <= 10:
-                matriz_usuario[y].append("O")
-
-        impresion(matriz_usuario)
-
-        matriz_pc= [
-        [" " ],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        [],
-        []
-        ]
-
-        z= 1
-        for y in range(1,11):
-            matriz_pc[y].append( z )
-            z += 1
-
-        w=1
-        for y in columnas:
-            matriz_pc[0].insert(w,y)
-            w +=1
-
-        for y in range (1,11):
-            while len(matriz_pc[y]) <= 10:
-                matriz_pc[y].append(0)
-
-        relleno_de_matriz (matriz_pc)
-        impresion(matriz_pc)
-
-        
-        diccionario_cordd= {
-            1:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-            2:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-            3:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-            4:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-            5:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-            6:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-            7:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-            8:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-            9:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1},
-        10:{"a":1,"b":1,"c":1,"d":1,"e":1,"f":1,"g":1,"h":1,"i":1,"j":1}
-            }
-
-        disparos = 0
-        puntacion = 0
-        Final= False
-        while Final == False :
-
-            columna = str(input("Ingrese la columna a,b,c,d,e,f,g,h: "))
-            while columna.lower() not in columnas:
-                    print ("Coloque los valores pedidos")
-                    columna = str(input("Ingrese la columna a,b,c,d,e,f,g,h: "))
-        
-            fila = pedirNumeroEnteroValidado("Ingrese el numero de fila del 1 al 10: ")
-        
-            while fila not in filas: 
-                print ("Coloque los valores pedidos")
-                fila = pedirNumeroEnteroValidado("Ingrese el numero de fila del 1 al 10: ")
-
-        
-            if diccionario_cordd[fila][columna] == 0:
-                print ("Esa cordenada ya fue colocada, intente con otra")
-            
-            elif diccionario_cordd[fila][columna] == 1:
-                disparos +=1 
-                diccionario_cordd[fila][columna] = 0
-                matriz_usuario[fila].insert((columnas.index(columna))+ 1, "X")
-                impresion(matriz_usuario)
-
-                if matriz_pc[fila][columnas.index(columna)+ 1] !=0:
-                    puntacion += 10
-                    
-
-                elif matriz_pc[fila][columnas.index(columna)+ 1] ==0:
-                    puntacion += -2
-                    print("Fallaste")
-
-                
-
-                for y in range(1,11):
-                    for x in range (1,11): 
-                        if x ==2 or x == 1 or x == 3:
-                            Final = False
-                            break
-                        else:
-                            Final = True
-
-        print ("Puntos obtuvidos: {} ptos ".format(puntacion))
-
-        continuar = pedirNumeroEnteroValidado("Ingrese 0 si quiere jugar de nuevo o 1 si quieres salir")
-        while continuar !=0 and continuar !=1 :
-            print("Ingrese los valores desados")
-            continuar = pedirNumeroEnteroValidado("Ingrese 0 si quiere jugar de nuevo o 1 si quieres salir")
-        if continuar ==0:
-            juego = 0
-        elif continuar == 1:
-            juego = 1
-        
-        
-
-
+impresion(matriz_pc)
+print (matriz_pc)

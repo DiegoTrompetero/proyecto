@@ -7,8 +7,20 @@ class Usuario ():
         self.Genero = Genero
         self.Puntuacion_Max = Puntuacion_Max
 
+    def ordenar ():
+        diccdejugador = {
+            "Nombres": self.Nombres
+            "Apellidos": self.apellidos
+            "edad": self.edad
+            "Genero": self.Genero
+            "Puntuacion maxima": Puntuacion_Max
+        }
+
+
+
 
 Base_de_Jugadores = {}
+diccionario_top= {}
 
 
 print ("Bienvenido a Batalla naval")
@@ -18,36 +30,55 @@ Username = str(input('''Ingrese su nombre de usuario:
 '''))
 
 if Username not in Base_de_Jugadores:
-    while len(Username) >= 30:
-        Username = str(input('''Ingrese su nombre de usuario:
-        (debe ser menor a 30 carcateres y no debe contener espacios)
-        '''))
-
-    Verificacion = False
-    while Verificacion == False:
-        Espacio = False
-        for x in Username:
-            if x == " ":
-                Esapacio = True
-
-        if Espacio:
+    pregunta = str(input("Primera vez que juegas: Si[s] NO [n]"))
+    if pregunta.lower() == "n":
+         Username = str(input('''Ingrese su nombre de usuario:
+            (debe ser menor a 30 carcateres y no debe contener espacios)
+            '''))
+    elif pregunta.lower() == "s":
+        while len(Username) >= 30:
             Username = str(input('''Ingrese su nombre de usuario:
             (debe ser menor a 30 carcateres y no debe contener espacios)
             '''))
 
-        elif Espacio == False:
-            Verificacion == True
+        Verificacion = False
+        while Verificacion == False:
+            Espacio = False
+            for x in Username:
+                if x == " ":
+                    Esapacio = True
 
-    Nombres = input ("Ingrese sus Nombres")
-    Apellidos = input ("Ingrese sus apellidos")
-    Nombre_completo = str(Nombres) + " " + str(Apellidos)
-    Genero = str(input("Ingrese H para hombreo M para Mujer"))
-    
-    if Genero.lower() == "h":
-        Genero = "Hombre"
+            if Espacio:
+                Username = str(input('''Ingrese su nombre de usuario:
+                (debe ser menor a 30 carcateres y no debe contener espacios)
+                '''))
 
-    elif Genero.lower( )== "m":
-        Genero = "Mujer"
+            elif Espacio == False:
+                Verificacion == True
 
-    elif Genero.lower( ) != "m" and Genero.lower() != "h":
+        Nombres = input ("Ingrese sus Nombres")
+        Apellidos = input ("Ingrese sus apellidos")
+        Nombre_completo = str(Nombres) + " " + str(Apellidos)
+        Genero = str(input("Ingrese H para hombreo M para Mujer"))
+        while Genero.lower( ) != "m" and Genero.lower() != "h":
+            print("ingrese los datos pedidos")
+        if Genero.lower() == "h":
+            Genero = "Hombre"
+
+        elif Genero.lower( )== "m":
+            Genero = "Mujer"
+        
+        Puntuacion_Max = 0
+        print("Datos del nuevo usuario:")
+        print("Nombre de usuario:",)
+        print("Nombre completo: ", Nombre_completo)
+        print("Genero: ", Genero)
+        Base_de_jugadores: Usuario (Username,  )
+
+else:
+    deseo =
+
+
+
+   
         
