@@ -1,11 +1,38 @@
 import random
+rutados =  "c:/Users/diego/OneDrive/Documentos/Proyecto_Algoritmo_Diego/Listatop.txt"
+
+
 columnas = ("a","b","c","d","e","f","g","h","i","j")
 filas = (1,2,3,4,5,6,7,8,9,10)
+
+def escribirBaseDeDatos(listaDeTop):
+    archivo = open( rutados , "w")
+    print("Escritura Iniciada")
+    for vehiculo in listaDeTop:
+        vehiculostr = str(vehiculo[0]) +"," + str(vehiculo[1]) + "," + str(vehiculo[2]) +"," + str(vehiculo[3])
+        archivo.write(vehiculostr )
+    archivo.close() 
+    print("Escritura finalizada")
+    return True
+
+def LeerTop (ListadeTop):
+    archivo = open (rutados, "r")
+    for linea in archivo.readlines():
+        lista = linea.split(",")
+        ListadeTop.append(lista)
+        print (linea)
+    return True
+
+def ImpresionTop (Lista):
+    archivo = open (rutados, "r")
+    for linea in archivo.readlines():
+        print (linea)
+
 def impresion (matriz):
     for z in matriz:
         print (z[0],z[1],z[2],z[3],z[4],z[5],z[6],z[7],z[8],z[9],z[10])
 
-def pedirNumeroEnteroValidado(messages = "Ingrese un numero Enter0"):
+def pedirNumeroEnteroValidado(messages = "Ingrese un numero Entero"):
     num = input(messages)
     while not validarEntero(num):
         print("Error valor ingresado incompatible")
@@ -231,7 +258,8 @@ def relleno_de_matriz (matriz):
                     filex = random.randint(1,10)
                     if Cordenadaspc [filex][columnas[columnas.index(Golum)]] != 0 and Cordenadaspc [filex][columnas[columnas.index(Golum)+1]] != 0 and Cordenadaspc [filex][columnas[columnas.index(Golum)+2]]:
                         Cordenadaspc [filex][columnas[columnas.index(Golum)]] = 0
-                        Cordenadaspc [filex+1][columnas[columnas.index(Golum)]] = 0
+                        Cordenadaspc [filex][columnas[columnas.index(Golum)+1]] = 0
+                        Cordenadaspc [filex][columnas[columnas.index(Golum)+2]] = 0
                         matriz [filex][columnas.index(Golum)+1] = 3 
                         matriz [filex][columnas.index(Golum)+2] = 3
                         matriz [filex][columnas.index(Golum)+3] = 3 
@@ -310,6 +338,7 @@ def relleno_de_matriz (matriz):
                     if Cordenadaspc [filex][columnas[columnas.index(Golum)]] != 0 and Cordenadaspc [filex+1][columnas[columnas.index(Golum)]] != 0 and Cordenadaspc [filex+2][columnas[columnas.index(Golum)]]:
                         Cordenadaspc [filex][columnas[columnas.index(Golum)]] = 0
                         Cordenadaspc [filex+1][columnas[columnas.index(Golum)]] = 0
+                        Cordenadaspc [filex+1][columnas[columnas.index(Golum)]] = 0
                         matriz [filex][columnas.index(Golum)+1] = 3
                         matriz [filex+1][columnas.index(Golum)+1] = 3
                         matriz [filex+2][columnas.index(Golum)+1] = 3 
@@ -380,21 +409,20 @@ def relleno_de_matriz (matriz):
                             Cordenadaspc [filex+3][columnas[columnas.index(Golum)]] = 0
                             Cordenadaspc [filex+2][columnas[columnas.index(Golum)+1]] = 0
                             Cordenadaspc [filex+2][columnas[columnas.index(Golum)-1]] = 0
-                       
 
+lista_top = []
 
+LeerTop(lista_top)
 
-
-
-
-#class Flota ():
-    #__init__(self,posiones)
-    #self.posiciones= posiciones
+class Flota ():
+    __init__(self,posiones)
+    self.posiciones= posiciones
 
 
 usuario = 0
 while usuario == 0:
-    Datosdeljugador = {}
+    Usernameactivo = Username
+    Datosdeljugador = {"Usuario": Usernameactivo , "Puntuacion maxima": Base_de_Jugadores[Username]["Puntuacion maxima"]}
     juego = 0
     while juego == 0:
         matriz_usuario = [
@@ -474,6 +502,8 @@ while usuario == 0:
 
         disparos = 0
         puntacion = 0
+        disparosrep= 0
+        diccfloat = 9
         Final= False
         while Final == False :
 
@@ -491,6 +521,7 @@ while usuario == 0:
         
             if diccionario_cordd[fila][columna] == 0:
                 print ("Esa cordenada ya fue colocada, intente con otra")
+                disparosrep += 1
             
             elif diccionario_cordd[fila][columna] == 1:
                 disparos +=1 
@@ -499,31 +530,48 @@ while usuario == 0:
 
                 if matriz_pc[fila][columnas.index(columna)+ 1] !=0:
                     puntacion += 10
+                    diccfloat += -1
                     print("Bien")
-                    matriz_usuario[fila].insert((columnas.index(columna))+ 1, "F")
+                    matriz_usuario[fila][columnas.index(columna)+ 1] = "F"
+                    matriz_pc[fila][columnas.index(columna)+ 1] = "F"
                     impresion(matriz_usuario)
                     
 
                 elif matriz_pc[fila][columnas.index(columna)+ 1] ==0:
                     puntacion += -2
                     print("Fallaste")
-                    matriz_usuario[fila].insert((columnas.index(columna))+ 1, "X")
+                    matriz_usuario[fila][columnas.index(columna)+ 1] = "X"
                     impresion(matriz_usuario)
+
+                if diccfloat == 0:
+                    Final = True
 
                 
 
-                for y in range(1,11):
-                    for x in range (1,11): 
-                        if x ==2 or x == 1 or x == 3:
-                            Final = False
-                            break
-                        else:
-                            Final = True
-            
-        print("Usuario: {}".format(Datosdeljugador[Username]))
+                
+        if disparos ==9:
+            print("¿Eres un Robot? lo que acabas de hacer es poco probable ....")
+        
+        print("Usuario: {}".format(Usernameactivo))
+        print ("Disparos realizados: ", disparos)
         print ("Puntos obtuvidos: {} ptos ".format(puntacion))
-
-        #if puntacion > Datosdeljugador[P]
+        print("Disparos repetidos: ", disparosrep )
+        if disparos < 45:
+            print("Exelente Estrategia")
+        elif disparos >= 45 and disparos <= 70:
+            print ("Buena Estrategia; pero hay que mejorar")
+        elif disparos > 70:
+            print ("Considerese perdedor, tiene que mejorar notablemente")
+        
+        Nuevo = [Usernameactivo, str(puntacion), str(disparos), "\n" ]
+        if puntacion > Datosdeljugador["Puntuacion maxima"]:
+            Datosdeljugador["Puntuacion maxima"] = Puntuacion
+        
+        for x in range(1,11):
+            if Nuevo[1] > lista_top [x][1]:
+                lista_top.insert(x,Nuevo)
+                lista_top.pop()
+                ImpresionTop(lista_top)
 
         continuar = pedirNumeroEnteroValidado("Ingrese 0 si quiere jugar de nuevo o 1 si quieres salir")
         while continuar !=0 and continuar !=1 :
@@ -533,6 +581,8 @@ while usuario == 0:
             juego = 0
         elif continuar == 1:
             juego = 1
+            usuario = 1
+    
         
         
 
